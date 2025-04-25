@@ -25,4 +25,4 @@ This PowerShell script automates the process of creating a GitHub repository, in
 3. Run the script:
 
    ```powershell
-   .\init-github-repo.ps1
+   .\upload_to_github.bat
