@@ -22,7 +22,12 @@ This PowerShell script automates the process of creating a GitHub repository, in
 
 1. Download or copy this script to your working directory.
 2. Open PowerShell and navigate to the folder containing the script.
-3. Run the script:
+3. Run the script by executing:
 
-   ```powershell
+   ```sh
+   upload_to_github.bat
+   ```
+   or, in PowerShell:
+   ```sh
    .\upload_to_github.ps1
+   ```
