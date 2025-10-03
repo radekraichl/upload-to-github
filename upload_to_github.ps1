@@ -19,6 +19,7 @@ if (-not (Test-CommandExists "git")) {
     Write-Host "Git is not installed. Please install Git and try again." -ForegroundColor Red
     Write-Host "You can install Git using winget with the following command:" -ForegroundColor Yellow
     Write-Host "winget install --id Git.Git" -ForegroundColor Cyan
+    cmd /c pause
     exit 1
 }
 
@@ -27,6 +28,7 @@ if (-not (Test-CommandExists "gh")) {
     Write-Host "You can install GitHub CLI using winget with the following command:" -ForegroundColor Yellow
     Write-Host "winget install --id GitHub.cli" -ForegroundColor Cyan
     Write-Host "Or download it from: https://cli.github.com/" -ForegroundColor Yellow
+    cmd /c pause
     exit 1
 }
 
@@ -34,6 +36,7 @@ if (-not (Test-CommandExists "gh")) {
 gh auth status 2>&1 | Out-Null
 if ($LASTEXITCODE -ne 0) {
     Write-Host "You are not logged in to GitHub CLI. Please login using 'gh auth login'." -ForegroundColor Red
+    cmd /c pause
     exit 1
 }
 
@@ -169,6 +172,7 @@ Write-Host "`nInitializing Git repository..." -ForegroundColor Cyan
 git init
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Error initializing Git repository." -ForegroundColor Red
+    cmd /c pause
     exit 1
 }
 
@@ -233,11 +237,13 @@ if ($LASTEXITCODE -ne 0) {
         git add . :!upload_to_github.bat :!upload_to_github.ps1 :!upload_to_github.exe
         if ($LASTEXITCODE -ne 0) {
             Write-Host "Error adding files to Git even after fixing ownership." -ForegroundColor Red
+            cmd /c pause
             exit 1
         }
     }
     else {
         Write-Host "Error adding files to Git." -ForegroundColor Red
+        cmd /c pause
         exit 1
     }
 }
@@ -258,11 +264,13 @@ if ($LASTEXITCODE -ne 0) {
         git commit -m "Initial commit with $template .gitignore"
         if ($LASTEXITCODE -ne 0) {
             Write-Host "Error creating initial commit even after setting identity." -ForegroundColor Red
+            cmd /c pause
             exit 1
         }
     }
     else {
         Write-Host "Error creating initial commit." -ForegroundColor Red
+        cmd /c pause
         exit 1
     }
 }
@@ -274,6 +282,7 @@ gh repo create $repoName --$repoVisibility --source=. --remote=origin --push --a
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Error creating GitHub repository." -ForegroundColor Red
     Write-Host "Check if a repository with this name already exists." -ForegroundColor Yellow
+    cmd /c pause
     exit 1
 }
 
