@@ -211,7 +211,7 @@ do {
 # Create README.md with custom content or default
 Write-Host "Creating README.md..." -ForegroundColor Cyan
 if ($readmeLines.Count -gt 0) {
-    $readmeContent = "# $repoName`n`n" + ($readmeLines -join "`n")
+    $readmeContent = $readmeLines -join "`n"
 }
 else {
     $readmeContent = "# $repoName`n"
